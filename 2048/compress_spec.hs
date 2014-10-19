@@ -8,10 +8,10 @@ main = hspec $ do
     it "empty slice" $ do
       left [nil,   nil, nil,   nil]     `shouldBe` [nil, nil,   nil, nil]
 
-    it "moves one step" $ do
+    it "moves one position" $ do
       left [nil,   val 2, nil,   nil]   `shouldBe` [val 2, nil,   nil, nil]
 
-    it "moves mutiple steps" $ do
+    it "moves mutiple positions" $ do
       left [nil,   nil,   nil,   val 2] `shouldBe` [val 2, nil,   nil, nil]
 
     it "does simple merge" $ do
@@ -22,3 +22,10 @@ main = hspec $ do
 
     it "does not merge when impossible" $ do
       left [nil,   val 2, val 4, nil]   `shouldBe` [val 2, val 4, nil, nil]
+
+    describe "merges in single step" $ do
+      it "" $ do
+        left [nil,   val 4, val 2, val 2]  `shouldBe` [val 4, val 4, nil, nil]
+
+      it "" $ do
+        left [nil,   val 2, val 2, val 2]  `shouldBe` [val 4, val 2, nil, nil]
